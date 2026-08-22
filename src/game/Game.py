@@ -4,6 +4,7 @@ from typing import Sequence
 
 from .Player import Player
 from .RandoBot import RandoBot
+from .SimpleDodger import SimpleDodger
 from .Rider import Rider
 from .util import Directions
 
@@ -19,8 +20,9 @@ class Game:
 
     def __init__(self,screen):
         self.screen = screen
-        self.p1 = Player(pygame.Vector2(100,100),Directions.RIGHT)
-        self.p2 = RandoBot(pygame.Vector2(400,400),Directions.LEFT)
+        self.p1 = Player(pygame.Vector2(100,320),Directions.DOWN)
+        # self.p2 = RandoBot(pygame.Vector2(400,400),Directions.LEFT)
+        self.p2 = SimpleDodger(pygame.Vector2(400,400),Directions.LEFT)
         self.frame = 0
         self.game_state = GameState([],self.p1,self.p2,self.frame)
 

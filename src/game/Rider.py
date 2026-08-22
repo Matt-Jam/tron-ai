@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from pygame import Vector2, draw
 
-from .util import Directions, copyVec2, transferVec2
+from .util import Directions, copyVec2, transferVec2, moveInDirection
 from .Track import Track, Line
 
 SPEED = 1
@@ -26,7 +26,7 @@ class Rider(ABC):
 
         return self.iterate_pos(game_state)
 
-    def _collide(self, game_state,attempt):
+    def _collide(self, game_state, attempt: Vector2):
         if attempt.x <= 0 or attempt.x >=600:
             return True
         if attempt.y <= 0 or attempt.y >= 600:
@@ -36,20 +36,12 @@ class Rider(ABC):
             return True
 
         return game_state.p2.trackStore.collide(attempt)
-        
+
+    
     def iterate_pos(self, game_state):
 
         attempt = copyVec2(self.pos)
-
-        match self.direction:
-            case Directions.UP:
-                attempt.y -= SPEED
-            case Directions.DOWN:
-                attempt.y += SPEED
-            case Directions.LEFT:
-                attempt.x -= SPEED
-            case _:
-                attempt.x += SPEED
+        moveInDirection(attempt,self.direction,SPEED)
 
         if(self._collide(game_state,attempt)):
             return False

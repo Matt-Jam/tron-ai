@@ -40,4 +40,15 @@ def validTurn(old: Directions, new: Directions):
         return False
 
     return True
-    
+
+def moveInDirection(pos: Vector2, direction: Directions, speed: int):
+
+    match direction:
+        case Directions.UP:
+            pos.y -= speed
+        case Directions.DOWN:
+            pos.y += speed
+        case Directions.LEFT:
+            pos.x -= speed
+        case _:
+            pos.x += speed

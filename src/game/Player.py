@@ -3,6 +3,8 @@ from .Rider import Rider
 from .util import Directions, validTurn
 
 class Player(Rider):
+    """Player driven rider, controlled by WASD
+    """
     def update_dir(self, game_state) -> bool:
         keys = game_state.keys   
         attempt = None
