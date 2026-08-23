@@ -1,8 +1,10 @@
+"""Code to drive the game screen, where two riders battle
+"""
+
 import pygame
 from dataclasses import dataclass
 from typing import Sequence
 
-from .riders.players.Player import Player
 from .riders.bots.RandoBot import RandoBot
 from .riders.bots.SimpleDodger import SimpleDodger
 from .riders.Rider import Rider

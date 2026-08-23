@@ -1,8 +1,10 @@
+"""Top level app controller, which manages the other screens
+"""
 import pygame
 from statemachine import StateChart, State
 
 import asyncio
-from ..game.Game import Game
+from ..game.game import Game
 from ..navscreens.GameOver import GameOver
 
 

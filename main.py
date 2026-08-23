@@ -1,9 +1,11 @@
+""" A pygame tron game, compatible with pygbag for web deployment
+"""
 import pygame
 
 # pygame setup
 pygame.init()
 
-from src.app.App import App
+from src.app.app import App
 import asyncio
 
 
