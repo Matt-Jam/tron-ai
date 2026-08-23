@@ -58,8 +58,8 @@ def moveInDirection(pos: Vector2, direction: Directions, speed: int):
 def getDirectionFromVector(vec: Vector2):
     if abs(vec.x) > abs(vec.y):
         if vec.x > 0:
-            return Directions.DOWN
-        return Directions.UP
+            return Directions.RIGHT
+        return Directions.LEFT
     if vec.y > 0:
         return Directions.DOWN
     return Directions.UP

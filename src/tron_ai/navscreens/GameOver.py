@@ -1,6 +1,6 @@
 from typing import Sequence
 import pygame
-from ..app.resources import MAIN_FONT
+from tron_ai.app.resources import get_main_font
 
 
 class GameOver:
@@ -12,7 +12,8 @@ class GameOver:
 
     def draw(self):
         self.screen.fill("purple")
-        message = MAIN_FONT.render(self.messages[self.state], True, (0, 0, 0))
+        message = get_main_font().render(
+            self.messages[self.state], True, (0, 0, 0))
         self.screen.blit(message, (100, 100))
 
     def step(self, keys: Sequence[bool]):

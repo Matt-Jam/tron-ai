@@ -1,3 +1,5 @@
 import pygame
 
-MAIN_FONT = pygame.font.SysFont("monospace", 15)
+
+def get_main_font():
+    return pygame.font.SysFont("monospace", 15)
