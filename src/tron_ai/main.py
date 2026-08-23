@@ -1,9 +1,9 @@
 """ A pygame tron game, compatible with pygbag for web deployment
 """
-from tron_ai.app.app import App
 import asyncio
-
 import pygame
+
+from tron_ai.app.app import App
 
 # pygame setup
 pygame.init()  # pylint: disable=no-member

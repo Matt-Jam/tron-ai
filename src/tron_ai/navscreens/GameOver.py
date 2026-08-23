@@ -19,7 +19,7 @@ class GameOver:
     def step(self, keys: Sequence[bool]):
         self.draw()
 
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE]:  # pylint: disable=no-member
             return False
 
         return True

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from pygame import Vector2, draw
+from pygame import Vector2
 
-from tron_ai.game.riders.util import Directions, transferVec2, moveInDirection
-from tron_ai.game.riders.Track import Track, Line
+from tron_ai.game.riders.util import Directions, moveInDirection
+from tron_ai.game.riders.Track import Track
 
 SPEED = 1
 
@@ -10,47 +10,39 @@ SPEED = 1
 class Rider(ABC):
     def __init__(self, pos: Vector2, direction: Directions, player: int):
         self.pos = pos
-        self.trackPoints = [pos.copy()]
         self.direction = direction
-        self.trackStore = Track()
-        self.line = Line(pos, direction)
-        self.trackStore.addLine(self.line)
+        self.track = Track()
         self.player = player
 
     def move(self, game_state):
-
-        if (self.update_dir(game_state)):
-            self.line.cut()
-            self.line = Line(self.pos, self.direction)
-            self.trackStore.addLine(self.line)
-            self.trackPoints.append(self.pos.copy())
-
+        self.update_dir(game_state)
         return self.iterate_pos(game_state)
 
-    def _collide(self, game_state, attempt: Vector2):
-        if attempt.x <= 0 or attempt.x >= 600:
-            return True
-        if attempt.y <= 0 or attempt.y >= 600:
+    def _collide(self, game_state, pos):
+        if pos.x <= 0 or pos.x >= 600:
             return True
 
-        if game_state.p1.trackStore.collide(attempt):
+        if pos.y <= 0 or pos.y >= 600:
             return True
 
-        return game_state.p2.trackStore.collide(attempt)
+        if game_state.p1.track.collide(pos):
+            return True
+
+        return game_state.p2.track.collide(pos)
 
     def iterate_pos(self, game_state):
 
-        attempt = self.pos.copy()
-        moveInDirection(attempt, self.direction, SPEED)
+        moveInDirection(self.pos, self.direction, SPEED)
 
-        if self._collide(game_state, attempt):
+        if self._collide(game_state, self.pos):
             return False
 
-        transferVec2(attempt, self.pos)
+        self.track.addPoint(self.pos)
+
         return True
 
     def draw_track(self, screen):
-        draw.lines(screen, "black", False, self.trackPoints+[self.pos], 1)
+        self.track.draw(screen)
 
     def get_opponent(self, game_state) -> 'Rider':
         if self.player == 1:

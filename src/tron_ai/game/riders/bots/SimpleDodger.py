@@ -21,6 +21,7 @@ class SimpleDodger(Rider):
             moveInDirection(curr_pos, self.direction, 1)
             if (self._collide(game_state, curr_pos)):
                 attempt = self.random_valid_change()
+                break
 
         if validTurn(self.direction, attempt):
             self.direction = attempt
