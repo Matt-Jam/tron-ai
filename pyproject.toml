@@ -9,5 +9,11 @@ version = "0.1.0"
 [project.scripts]
 tron-ai = "tron_ai.main:run"
 
+[tool.pytest]
+filterwarnings = [
+    'error',
+    'ignore::DeprecationWarning',
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
