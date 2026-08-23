@@ -1,6 +1,6 @@
 import pygame
-from .Rider import Rider
-from .util import Directions, validTurn
+from ..Rider import Rider
+from ..util import Directions, validTurn
 
 class Player(Rider):
     """Player driven rider, controlled by WASD

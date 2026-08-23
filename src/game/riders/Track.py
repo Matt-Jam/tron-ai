@@ -1,15 +1,15 @@
 import pygame
-from .util import LineType, Directions, getLineTypeFromDir, copyVec2
+from .util import LineType, Directions, getLineTypeFromDir
 
     
 class Line:
     def __init__(self, pos:pygame.Vector2, direction: Directions):
-        self.start = copyVec2(pos)
+        self.start = pos.copy()
         self.end = pos
         self.type = getLineTypeFromDir(direction)
 
     def cut(self):
-        self.end = copyVec2(self.end)
+        self.end = self.end.copy()
 
     def isbetween(self,p:float, a:float, b:float):
         return min(a,b) <= p <= max(a,b)

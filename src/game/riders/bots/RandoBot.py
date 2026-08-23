@@ -1,6 +1,6 @@
 import random
-from .Rider import Rider
-from .util import ALLDIRECTIONS, validTurn
+from ..Rider import Rider
+from ..util import ALLDIRECTIONS, validTurn
 
 
 class RandoBot(Rider):

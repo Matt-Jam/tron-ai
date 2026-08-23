@@ -2,11 +2,11 @@ import pygame
 from dataclasses import dataclass
 from typing import Sequence
 
-from .Player import Player
-from .RandoBot import RandoBot
-from .SimpleDodger import SimpleDodger
-from .Rider import Rider
-from .util import Directions
+from .riders.players.Player import Player
+from .riders.bots.RandoBot import RandoBot
+from .riders.bots.SimpleDodger import SimpleDodger
+from .riders.Rider import Rider
+from .riders.util import Directions
 
 @dataclass
 class GameState:
@@ -17,12 +17,11 @@ class GameState:
     winner = -1
 
 class Game:
-
     def __init__(self,screen):
         self.screen = screen
-        self.p1 = Player(pygame.Vector2(100,320),Directions.DOWN)
-        # self.p2 = RandoBot(pygame.Vector2(400,400),Directions.LEFT)
-        self.p2 = SimpleDodger(pygame.Vector2(400,400),Directions.LEFT)
+        self.p1 = SimpleDodger(pygame.Vector2(100,320),Directions.DOWN,1)
+        self.p2 = RandoBot(pygame.Vector2(400,400),Directions.LEFT,2)
+        # self.p2 = SimpleDodger(pygame.Vector2(400,400),Directions.LEFT,2)
         self.frame = 0
         self.game_state = GameState([],self.p1,self.p2,self.frame)
 
@@ -35,16 +34,15 @@ class Game:
         if p1_safe:
             if p2_safe:
                 return True
-            else:
-                self.game_state.winner = 0
-                return False
-        else:
-            if p2_safe:
-                self.game_state.winner = 1
-                return False
-            else:
-                self.game_state.winner = 2
-                return False
+            self.game_state.winner = 0
+            return False
+            
+        if p2_safe:
+            self.game_state.winner = 1
+            return False
+
+        self.game_state.winner = 2
+        return False
 
     def draw(self):
         self.screen.fill("white")
