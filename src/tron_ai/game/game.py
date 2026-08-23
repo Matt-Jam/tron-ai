@@ -7,6 +7,8 @@ from typing import Sequence
 
 from tron_ai.game.riders.bots.RandoBot import RandoBot
 from tron_ai.game.riders.bots.SimpleDodger import SimpleDodger
+from tron_ai.game.riders.players.player import Player
+from tron_ai.game.riders.bots.AgroSimpleDodger import AgroSimpleDodger
 from tron_ai.game.riders.Rider import Rider
 from tron_ai.game.riders.util import Directions
 
@@ -23,9 +25,9 @@ class GameState:
 class Game:
     def __init__(self, screen):
         self.screen = screen
-        self.p1 = SimpleDodger(pygame.Vector2(100, 320), Directions.DOWN, 1)
-        self.p2 = RandoBot(pygame.Vector2(400, 400), Directions.LEFT, 2)
-        # self.p2 = SimpleDodger(pygame.Vector2(400,400),Directions.LEFT,2)
+        self.p1 = Player(pygame.Vector2(100, 320), Directions.UP, 1)
+        self.p2 = AgroSimpleDodger(
+            pygame.Vector2(400, 400), Directions.LEFT, 2)
         self.frame = 0
         self.game_state = GameState([], self.p1, self.p2, self.frame)
 
