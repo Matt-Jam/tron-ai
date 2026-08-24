@@ -4,12 +4,12 @@ import asyncio
 import pygame
 
 from tron_ai.app.app import App
-
+from tron_ai.config import config
 # pygame setup
 pygame.init()  # pylint: disable=no-member
 
 
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((config.screen_size, config.screen_size))
 clock = pygame.time.Clock()
 
 
