@@ -1,5 +1,6 @@
 from enum import Enum
 from pygame import Vector2
+from tron_ai.config import config
 
 
 class Directions(Enum):
@@ -63,3 +64,16 @@ def getDirectionFromVector(vec: Vector2):
     if vec.y > 0:
         return Directions.DOWN
     return Directions.UP
+
+
+def collide(game_state, pos):
+    if pos.x <= 0 or pos.x >= config.screen_size:
+        return True
+
+    if pos.y <= 0 or pos.y >= config.screen_size:
+        return True
+
+    if game_state.p1.track.collide(pos):
+        return True
+
+    return game_state.p2.track.collide(pos)

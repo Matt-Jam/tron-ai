@@ -1,11 +1,14 @@
 from pygame import Vector2, Surface, SRCALPHA  # pylint: disable=no-name-in-module
 import numpy as np
+from tron_ai.config import config
 
 
 class Track:
     def __init__(self):
-        self.grid = np.zeros((600, 600), dtype=bool)
-        self.surface = Surface((600, 600), SRCALPHA)
+        self.grid = np.zeros(
+            (config.screen_size, config.screen_size), dtype=bool)
+        self.surface = Surface(
+            (config.screen_size, config.screen_size), SRCALPHA)
         self.surface.fill((0, 0, 0, 0))
 
     def addPoint(self, point: Vector2):

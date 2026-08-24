@@ -2,7 +2,7 @@ import random
 
 from pygame import Vector2
 from tron_ai.game.riders.Rider import Rider
-from tron_ai.game.riders.util import HORIZONTAL, VERTICAL, Directions, validTurn, moveInDirection, getDirectionFromVector
+from tron_ai.game.riders.util import HORIZONTAL, VERTICAL, Directions, validTurn, getDirectionFromVector
 
 
 class AgroSimpleDodger(Rider):
@@ -29,12 +29,9 @@ class AgroSimpleDodger(Rider):
         else:
             self.cooldown -= 1
 
-        for _ in range(10):
-            moveInDirection(curr_pos, attempt, 1)
-            if (self._collide(game_state, curr_pos)):
-                attempt = self.random_valid_change()
-                self.cooldown = 100
-                break
+        if self._send_ray(game_state, attempt, 10):
+            attempt = self.random_valid_change()
+            self.cooldown = 100
 
         if validTurn(self.direction, attempt):
             self.direction = attempt
