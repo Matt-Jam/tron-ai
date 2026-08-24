@@ -10,6 +10,7 @@ from tron_ai.game.riders.bots.SimpleDodger import SimpleDodger
 from tron_ai.game.riders.bots.ScaredBot import ScaredBot
 from tron_ai.game.riders.players.player import Player
 from tron_ai.game.riders.bots.AgroSimpleDodger import AgroSimpleDodger
+from tron_ai.game.riders.bots.ChillBot import ChillBot
 from tron_ai.game.riders.Rider import Rider
 from tron_ai.game.riders.util import Directions
 
@@ -26,9 +27,9 @@ class GameState:
 class Game:
     def __init__(self, screen):
         self.screen = screen
-        self.p1 = ScaredBot(pygame.Vector2(100, 40), Directions.UP, 1)
+        self.p1 = ChillBot(pygame.Vector2(300, 250), Directions.LEFT, 1)
         self.p2 = ScaredBot(
-            pygame.Vector2(320, 230), Directions.LEFT, 2)
+            pygame.Vector2(200, 550), Directions.RIGHT, 2)
         self.frame = 0
         self.game_state = GameState([], self.p1, self.p2, self.frame)
 

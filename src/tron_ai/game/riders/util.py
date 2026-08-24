@@ -34,7 +34,7 @@ def transferVec2(src: Vector2, tar: Vector2):
 
 def validTurn(old: Directions, new: Directions):
     if (old == new):
-        return False
+        return True
     if (old in HORIZONTAL) and (new in HORIZONTAL):
         return False
     if (old in VERTICAL) and (new in VERTICAL):

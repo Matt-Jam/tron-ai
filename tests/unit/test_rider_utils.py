@@ -33,13 +33,13 @@ def test_transferVec2_ref():
     (Directions.RIGHT, Directions.UP),
     (Directions.UP, Directions.RIGHT),
     (Directions.LEFT,Directions.DOWN),
-    (Directions.UP, Directions.LEFT)
+    (Directions.UP, Directions.LEFT),
+    (Directions.RIGHT, Directions.RIGHT),
 ])
 def test_validTurn_T(old, new):
     assert validTurn(old,new)
 
 @pytest.mark.parametrize("old, new",[
-    (Directions.RIGHT, Directions.RIGHT),
     (Directions.UP, Directions.DOWN),
     (Directions.LEFT,Directions.RIGHT),
     (Directions.DOWN, Directions.UP)
